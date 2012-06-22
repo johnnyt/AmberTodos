@@ -5,6 +5,17 @@ task :default => :compile
 desc 'Alias for compile:dev'
 task :compile => 'compile:dev'
 
+desc 'Setup local environment'
+task :setup do
+  sh "git submodule init"
+  sh "git submodule update"
+end
+
+desc 'Run the Node.js server'
+task :server do
+  sh "./bin/server"
+end
+
 namespace :compile do
   desc 'Compile production js/amber.deploy.js'
   task :prod do
