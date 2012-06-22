@@ -3,10 +3,8 @@
 <head>
   <title>TodoMVC: Amber Smalltalk</title>
   <link rel='stylesheet' href='css/todos.css'>
-  <script src='js/jquery-1.7.min.js'></script>
-
-  <link rel='stylesheet' href='css/amber.css'>
-  <script src='js/amber.js'></script>
+  <link rel='stylesheet' href='css/amber-ide.css'>
+  <link rel='stylesheet' href='js/contextMenu/jquery.contextMenu.css'>
 </head>
 <body>
   <div id='todoapp'>
@@ -17,9 +15,21 @@
     JohnnyT, Addy Osmani
   </div>
 
-  <!-- scripts here -->
-  <script type='text/javascript'>
-    $(function(){ smalltalk.Browser._open() })
-  </script>
+  <div id="amber-includes">
+    <script src='js/jquery-1.7.min.js'></script>
+    <script type='text/javascript'>
+      window.smalltalkReady = function(){
+        smalltalk.Package._fetch_('HTML5');
+        smalltalk.Package._fetch_('Tools');
+
+        (function(){
+
+          smalltalk.Browser._open();
+
+        })._valueWithTimeout_(200);
+      };
+    </script>
+    <script src='js/amber.js'></script>
+  </div>
 </body>
 </html>
